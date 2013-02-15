@@ -6,10 +6,10 @@ SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=1.7.18.20130213
+VERSION=20130214
 RELEASE=1
 CATEGORY="Devel"
-SUMMARY="Cygwin x86_64 toolchain"
+SUMMARY="Cygwin 64bit toolchain"
 DESCRIPTION="Cygwin is a Linux-like environment for Windows. It consists of a
 DLL (cygwin1.dll), which acts as an emulation layer providing substantial POSIX
 system call functionality, and a collection of tools, which provide a Linux
@@ -19,7 +19,7 @@ HOMEPAGE="http://cygwin.com/"
 PATCH_URI="01-program-prefix.patch  02-toollibdir.patch"
 
 cygwin64_CONTENTS="--exclude=cyg64win1.dbg usr/"
-PKG_IGNORE="${TOOLCHAIN_TARGET#/}/usr/bin/cyg64win1.dbg"
+PKG_IGNORE="${TOOLCHAIN_SYSROOT#/}/usr/bin/cyg64win1.dbg"
 
 src_compile() {
 	cd ${B}
