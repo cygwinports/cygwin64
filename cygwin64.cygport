@@ -6,7 +6,7 @@ SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=20130214
+VERSION=20130216
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
@@ -16,10 +16,15 @@ system call functionality, and a collection of tools, which provide a Linux
 look and feel."
 HOMEPAGE="http://cygwin.com/"
 
-PATCH_URI="01-program-prefix.patch  02-toollibdir.patch"
+PATCH_URI="
+	01-program-prefix.patch
+	02-speclib-64bit.patch
+	03-dumper-64bit.patch
+	04-utils-static.patch
+"
 
-cygwin64_CONTENTS="--exclude=cyg64win1.dbg usr/"
-PKG_IGNORE="${TOOLCHAIN_SYSROOT#/}/usr/bin/cyg64win1.dbg"
+cygwin64_CONTENTS="--exclude=cygwin1.dbg usr/"
+PKG_IGNORE="${TOOLCHAIN_SYSROOT#/}/usr/bin/cygwin1.dbg"
 
 src_compile() {
 	cd ${B}
@@ -40,8 +45,8 @@ src_install() {
 		tooldir=${TOOLCHAIN_SYSROOT}/usr
 
 	insinto /usr/lib/debug/${TOOLCHAIN_SYSROOT}/usr/bin
-	doins ${TOOLCHAIN_TARGET}/winsup/cygwin/cyg64win1.dbg
-	dosym ../../../../lib/debug/${TOOLCHAIN_SYSROOT}/usr/bin/cyg64win1.dbg ${TOOLCHAIN_SYSROOT}/usr/bin/cyg64win1.dbg
+	doins ${TOOLCHAIN_TARGET}/winsup/cygwin/cygwin1.dbg
+	dosym ../../../../lib/debug/${TOOLCHAIN_SYSROOT}/usr/bin/cygwin1.dbg ${TOOLCHAIN_SYSROOT}/usr/bin/cygwin1.dbg
 
 	cd ${D}${TOOLCHAIN_SYSROOT}
 	rm -fr usr/share/info/ usr/share/man/
