@@ -6,7 +6,7 @@ SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=20130218
+VERSION=20130222
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
@@ -18,7 +18,6 @@ HOMEPAGE="http://cygwin.com/"
 
 PATCH_URI="
 	01-program-prefix.patch
-	04-utils-static.patch
 "
 
 cygwin64_CONTENTS="--exclude=cygwin1.dbg usr/"
