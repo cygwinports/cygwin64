@@ -6,7 +6,7 @@ SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=20130225
+VERSION=20130304
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
