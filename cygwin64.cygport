@@ -1,12 +1,12 @@
 TOOLCHAIN_TARGET="x86_64-pc-cygwin"
-CVS_URI=":pserver:anoncvs@cygwin.com:/cvs/src"
+CVS_URI="${SOURCEWARE_LOGIN-:pserver:anoncvs@cygwin.com}:/cvs/src"
 CVS_MODULE="cygwin"
 CVS_BRANCH="cygwin-64bit-branch"
 SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=20130304
+VERSION=20130305
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
