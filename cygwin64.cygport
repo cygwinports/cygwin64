@@ -1,13 +1,12 @@
 TOOLCHAIN_TARGET="x86_64-pc-cygwin"
 CVS_URI="${SOURCEWARE_LOGIN-:pserver:anoncvs@cygwin.com}:/cvs/src"
 CVS_MODULE="cygwin"
-CVS_BRANCH="cygwin-64bit-branch"
 SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=1.7.18.21
-RELEASE=1
+VERSION=1.7.19
+RELEASE=3
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
 DESCRIPTION="Cygwin is a Linux-like environment for Windows. It consists of a
