@@ -6,7 +6,7 @@ inherit toolchain cvs
 
 NAME="cygwin64"
 VERSION=1.7.19
-RELEASE=3
+RELEASE=8
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
 DESCRIPTION="Cygwin is a Linux-like environment for Windows. It consists of a
@@ -43,7 +43,8 @@ src_install() {
 	dosym ../../../../lib/debug/${TOOLCHAIN_SYSROOT}/usr/bin/cygwin1.dbg ${TOOLCHAIN_SYSROOT}/usr/bin/cygwin1.dbg
 
 	cd ${D}${TOOLCHAIN_SYSROOT}
-	rm -fr usr/share/info/ usr/share/man/
+	rm -fr etc/ usr/bin/*.exe usr/bin/cyglsa* usr/bin/*-config usr/sbin/*.exe
+	rm -fr usr/share/doc/ usr/share/info/ usr/share/man/
 	# provided by libiconv
 	rm -f usr/include/iconv.h
 	# provided by libncurses
