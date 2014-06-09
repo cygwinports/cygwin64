@@ -1,11 +1,12 @@
 TOOLCHAIN_TARGET="x86_64-pc-cygwin"
 CVS_URI="${SOURCEWARE_LOGIN-:pserver:anoncvs@cygwin.com}:/cvs/src"
 CVS_MODULE="cygwin"
+CVS_BRANCH="cygwin-${PV//\./_}-release"
 SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=1.7.27
+VERSION=1.7.30
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
@@ -20,13 +21,13 @@ PATCH_URI="
 "
 
 cygwin64_CONTENTS="--exclude=cygwin1.dbg usr/"
-PKG_IGNORE="${TOOLCHAIN_SYSROOT#/}/usr/bin/cygwin1.dbg"
+PKG_IGNORE="${TOOLCHAIN_BINDIR#/}/cygwin1.dbg"
 
 src_compile() {
 	cd ${B}
 	${S}/configure \
 		--target=${TOOLCHAIN_TARGET} \
-		--prefix=${TOOLCHAIN_SYSROOT}/usr \
+		--prefix=${TOOLCHAIN_PREFIX} \
 		--sysconfdir=${TOOLCHAIN_SYSROOT}/etc \
 		--program-transform-name=s,y,y, \
 		|| error
@@ -36,11 +37,11 @@ src_compile() {
 
 src_install() {
 	cd ${B}
-	cyginstall -j1 tooldir=${TOOLCHAIN_SYSROOT}/usr
+	cyginstall -j1 tooldir=${TOOLCHAIN_PREFIX}
 
-	insinto /usr/lib/debug/${TOOLCHAIN_SYSROOT}/usr/bin
+	insinto /usr/lib/debug/${TOOLCHAIN_BINDIR}
 	doins ${TOOLCHAIN_TARGET}/winsup/cygwin/cygwin1.dbg
-	dosym ../../../../lib/debug/${TOOLCHAIN_SYSROOT}/usr/bin/cygwin1.dbg ${TOOLCHAIN_SYSROOT}/usr/bin/cygwin1.dbg
+	dosym ../../../../lib/debug/${TOOLCHAIN_BINDIR}/cygwin1.dbg ${TOOLCHAIN_BINDIR}/cygwin1.dbg
 
 	cd ${D}${TOOLCHAIN_SYSROOT}
 	rm -fr etc/ usr/bin/*.exe usr/bin/cyglsa* usr/bin/*-config usr/sbin/*.exe
