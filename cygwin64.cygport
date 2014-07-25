@@ -6,7 +6,7 @@ SRC_DIR="src"
 inherit toolchain cvs
 
 NAME="cygwin64"
-VERSION=1.7.30
+VERSION=1.7.31
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
@@ -50,6 +50,8 @@ src_install() {
 	rm -f usr/include/iconv.h
 	# provided by libncurses
 	rm -f usr/include/unctrl.h
+	# provided by libtirpc
+	rm -fr usr/include/rpc/
 }
 
 DOCS="winsup/COPYING winsup/CYGWIN_LICENSE COPYING.NEWLIB README"
