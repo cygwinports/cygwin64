@@ -1,12 +1,10 @@
 TOOLCHAIN_TARGET="x86_64-pc-cygwin"
-CVS_URI="${SOURCEWARE_LOGIN-:pserver:anoncvs@cygwin.com}:/cvs/src"
-CVS_MODULE="cygwin"
-CVS_BRANCH="cygwin-${PV//\./_}-release"
-SRC_DIR="src"
-inherit toolchain cvs
+GIT_URI="git://sourceware.org/git/newlib-cygwin.git"
+GIT_TAG="cygwin-${PV//\./_}-release"
+inherit toolchain git
 
 NAME="cygwin64"
-VERSION=1.7.34
+VERSION=2.4.1
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
@@ -45,7 +43,7 @@ src_install() {
 
 	cd ${D}${TOOLCHAIN_SYSROOT}
 	rm -fr etc/ usr/bin/*.exe usr/bin/cyglsa* usr/bin/*-config usr/sbin/*.exe
-	rm -fr usr/share/doc/ usr/share/info/ usr/share/man/
+	rm -fr usr/share/doc/ usr/share/info/ usr/share/man/ usr/share/cygwin/
 	# provided by libiconv
 	rm -f usr/include/iconv.h
 	# provided by libncurses
