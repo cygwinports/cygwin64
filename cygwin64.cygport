@@ -4,7 +4,7 @@ GIT_TAG="cygwin-${PV//\./_}-release"
 inherit toolchain git
 
 NAME="cygwin64"
-VERSION=2.4.1
+VERSION=2.5.1
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
@@ -17,6 +17,8 @@ HOMEPAGE="http://cygwin.com/"
 PATCH_URI="
 	01-program-prefix.patch
 "
+
+ARCH=i686
 
 cygwin64_CONTENTS="--exclude=cygwin1.dbg usr/"
 PKG_IGNORE="${TOOLCHAIN_BINDIR#/}/cygwin1.dbg"
