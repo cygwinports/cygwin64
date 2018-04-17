@@ -4,7 +4,7 @@ GIT_TAG="cygwin-${PV//\./_}-release"
 inherit toolchain git
 
 NAME="cygwin64"
-VERSION=2.8.2
+VERSION=2.10.0
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Cygwin 64bit toolchain"
@@ -15,13 +15,16 @@ look and feel."
 HOMEPAGE="http://cygwin.com/"
 
 PATCH_URI="
+	https://sourceware.org/git/?p=newlib-cygwin.git;a=patch;h=4564b30f331a067e71b25308ac7c8a85ceb4b122#/4564b30f331a067e71b25308ac7c8a85ceb4b122.patch
+	https://sourceware.org/git/?p=newlib-cygwin.git;a=patch;h=e494b560350cabef94126a4478096aae89ae35a0#/e494b560350cabef94126a4478096aae89ae35a0.patch
+	https://sourceware.org/git/?p=newlib-cygwin.git;a=patch;h=829820af6e5bccefe93485023e93821807fb99b8#/829820af6e5bccefe93485023e93821807fb99b8.patch
 	01-program-prefix.patch
 "
 
 ARCH=i686
 
 cygwin64_CONTENTS="--exclude=cygwin1.dbg usr/"
-PKG_IGNORE="${TOOLCHAIN_BINDIR#/}/cygwin1.dbg"
+PKG_IGNORE="${TOOLCHAIN_BINDIR#/}/cygwin1.dbg usr/lib/debug${TOOLCHAIN_BINDIR}/cygwin1.dbg"
 
 src_compile() {
 	cd ${B}
